@@ -1,0 +1,100 @@
+#include "game.h"
+#include "bird.h"
+#include "pipe.h"
+#include "linked_list.h"
+#include "raylib.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+Bird* bird;
+
+Texture2D bird_texture;
+Texture2D background;
+
+// Lista encadeada de tubos
+Node* pipe_head;
+Node* pipe_tail;
+
+int passed;
+
+Pipe* generate_random_pipe(){
+    int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT);
+    return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT);
+}
+
+void Game_load(){
+    bird = Bird_create(BIRD_X, BIRD_START_Y);
+
+    bird_texture = LoadTexture("assets/sprites/bird.png");
+    background = LoadTexture("assets/sprites/flappy_bird_background.png");
+
+    Pipe* pipe = generate_random_pipe();
+    add_end(&pipe_head, &pipe_tail, pipe);
+
+    passed = 0;
+}
+
+void Game_unload(){
+    Bird_free(bird);
+    UnloadTexture(bird_texture);
+
+    while (pipe_head != NULL){
+        remove_first(&pipe_head, &pipe_tail);
+    }
+}
+
+float pipe_time = 0;
+
+void Game_update(){
+    pipe_time += GetFrameTime();
+
+    if (IsKeyPressed(KEY_SPACE)){
+        Bird_jump(bird);
+    }
+    Bird_update(bird);
+
+    if (pipe_time > TIME_CRATION_PIPE){
+        pipe_time = 0;
+        Pipe* pipe = generate_random_pipe();
+        add_end(&pipe_head, &pipe_tail, pipe);
+    }
+
+    if (pipe_head){
+        Pipe* first_pipe = pipe_head->pipe;
+        if (first_pipe->x < -PIPE_WIDTH){
+            remove_first(&pipe_head, &pipe_tail);
+        }
+        if (first_pipe->passed == false && first_pipe->x + PIPE_WIDTH < BIRD_X - BIRD_RADIUS / 2){
+            first_pipe->passed = true;
+            passed++;
+        }
+    }
+    
+    apply_function(&pipe_head, &pipe_tail, Pipe_update);
+}
+
+void Game_draw(){
+    DrawTexturePro(
+        background,
+        (Rectangle){0, 0, background.width, background.height},
+        (Rectangle){0, 0, WIDTH, HEIGHT},
+        (Vector2){0, 0},
+        0,
+        WHITE
+    );
+
+    Bird_draw(bird, bird_texture);
+
+    apply_function(&pipe_head, &pipe_tail, Pipe_draw);
+
+    Node* cur = pipe_head;
+    int length = 0;
+    while(cur){
+        length++;
+        cur = cur->next;
+    }
+
+    char text[100];
+    sprintf(text, "Tubos: %d\nPassados: %d", length, passed);
+    DrawText(text, 100, 100, 40, BLACK);
+}
