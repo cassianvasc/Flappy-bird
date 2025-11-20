@@ -5,11 +5,11 @@
 const float GRAVITY = 0.15f;
 const float BIRD_RADIUS = 100.0f;
 const float BIRD_X = 250.0f;
-const float BIRD_JUMP_FORCE = 8.0f;
+const float BIRD_JUMP_FORCE = 7.0f;
 float BIRD_START_Y = 400;
 
 const float PIPE_WIDTH = 150.0f;
-float PIPE_VELOCITY = 3.0f;
+float PIPE_VELOCITY = 4.5f;
 float PIPE_HOLE_HEIGHT = 300.0f;
 
 float TIME_CRATION_PIPE = 4.0f;

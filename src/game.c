@@ -47,7 +47,7 @@ void Game_unload(){
     }
 }
 
-float pipe_time = 0;
+float pipe_time = 0.0f;
 
 void Game_update(){
     if (game_over) {
@@ -90,10 +90,7 @@ while (node != NULL) {
     Rectangle topRect, bottomRect;
     Pipe_get_rects(p, &topRect, &bottomRect);
 
-    if (CheckCollisionRecs(birdRect, topRect) ||
-        CheckCollisionRecs(birdRect, bottomRect)) {
-
-        printf("COLISÃO!\n");
+    if (CheckCollisionRecs(birdRect, topRect) || CheckCollisionRecs(birdRect, bottomRect)) {
         game_over = true;
         return;
     }

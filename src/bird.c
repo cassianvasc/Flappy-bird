@@ -42,7 +42,7 @@ void Bird_free(Bird* bird){
 
 Rectangle Bird_get_rect(Bird *bird) {
 
-    float hitbox_w = BIRD_RADIUS * 0.9f;
+    float hitbox_w = BIRD_RADIUS * 0.3f;
     float hitbox_h = BIRD_RADIUS * 0.6f;
 
     return (Rectangle){
