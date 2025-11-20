@@ -24,7 +24,7 @@ void menu_unload(){
 
 
 void menu_update(){
-    if(IsKeyPressed(KEY_SPACE)){
+    if(IsKeyPressed(KEY_ENTER)){
         Game_load();
         screen = GAME;
     }
@@ -51,7 +51,7 @@ void menu_draw(){
         BLACK
     );
 
-    const char *instr = "Pressione ESPAÇO para jogar";
+    const char *instr = "Pressione ENTER para jogar";
     int instrsize = 28;
     DrawText(
         instr,

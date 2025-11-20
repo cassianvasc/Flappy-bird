@@ -52,7 +52,7 @@ float pipe_time = 0.0f;
 
 void Game_update(){
     if (game_over) {
-        if (IsKeyPressed(KEY_SPACE)) {
+        if (IsKeyPressed(KEY_ENTER)) {
             Game_unload();
             screen = MENU;
             menu_load();
@@ -130,7 +130,7 @@ void Game_draw(){
 
     if (game_over) {
     const char *msg = "GAME OVER";
-    const char *msg2 = "Pressione ESPAÇO para reiniciar";
+    const char *msg2 = "Pressione ENTER para reiniciar";
 
     int font1 = 80;
     int font2 = 30;

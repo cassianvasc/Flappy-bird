@@ -19,5 +19,5 @@ run: $(EXEC_MAIN)
 clean:
 	del /Q $(EXEC_MAIN) $(EXEC_TEST) 2>nul || true
 
-# mingw32-make clean && mingw32-make run 
+# mingw32-make clean; mingw32-make run 
 #comando para rodar o codigo ^

@@ -12,8 +12,7 @@ float BIRD_START_Y = 400;
 const float PIPE_WIDTH = 150.0f;
 float PIPE_VELOCITY = 4.5f;
 float PIPE_HOLE_HEIGHT = 300.0f;
-
-float TIME_CRATION_PIPE = 4.0f;
+float TIME_CRATION_PIPE = 3.0f;
 
 float WIDTH = 800;
 float HEIGHT = 600;
