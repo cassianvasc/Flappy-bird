@@ -5,6 +5,9 @@
 #include "raylib.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+bool game_over = false;
 
 Bird* bird;
 
@@ -23,8 +26,9 @@ Pipe* generate_random_pipe(){
 }
 
 void Game_load(){
-    bird = Bird_create(BIRD_X, BIRD_START_Y);
+    game_over = false;
 
+    bird = Bird_create(BIRD_X, BIRD_START_Y);
     bird_texture = LoadTexture("assets/sprites/bird.png");
     background = LoadTexture("assets/sprites/flappy_bird_background.png");
 
@@ -46,6 +50,13 @@ void Game_unload(){
 float pipe_time = 0;
 
 void Game_update(){
+    if (game_over) {
+        if (IsKeyPressed(KEY_SPACE)) {
+            Game_unload();
+            Game_load();
+        }
+        return;
+    }
     pipe_time += GetFrameTime();
 
     if (IsKeyPressed(KEY_SPACE)){
@@ -69,6 +80,26 @@ void Game_update(){
             passed++;
         }
     }
+
+Rectangle birdRect = Bird_get_rect(bird);
+
+Node *node = pipe_head;
+while (node != NULL) {
+    Pipe *p = node->pipe;
+
+    Rectangle topRect, bottomRect;
+    Pipe_get_rects(p, &topRect, &bottomRect);
+
+    if (CheckCollisionRecs(birdRect, topRect) ||
+        CheckCollisionRecs(birdRect, bottomRect)) {
+
+        printf("COLISÃO!\n");
+        game_over = true;
+        return;
+    }
+
+    node = node->next;
+}
     
     apply_function(&pipe_head, &pipe_tail, Pipe_update);
 }
@@ -97,4 +128,28 @@ void Game_draw(){
     char text[100];
     sprintf(text, "Tubos: %d\nPassados: %d", length, passed);
     DrawText(text, 100, 100, 40, BLACK);
+
+    if (game_over) {
+    const char *msg = "GAME OVER";
+    const char *msg2 = "Pressione ESPAÇO para reiniciar";
+
+    int font1 = 80;
+    int font2 = 30;
+
+    DrawText(
+        msg,
+        WIDTH/2 - MeasureText(msg, font1)/2,
+        HEIGHT/2 - 100,
+        font1,
+        RED
+    );
+    DrawText(
+        msg2,
+        WIDTH/2 - MeasureText(msg2, font2)/2,
+        HEIGHT/2,
+        font2,
+        DARKGRAY
+    );
+}
+
 }

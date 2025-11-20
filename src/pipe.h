@@ -16,5 +16,6 @@ void Pipe_draw(Pipe* pipe);
 
 Pipe* Pipe_create(float x, float hole_start_y, float hole_size);
 void Pipe_free(Pipe* pipe);
+void Pipe_get_rects(Pipe *pipe, Rectangle *top, Rectangle *bottom);
 
 #endif

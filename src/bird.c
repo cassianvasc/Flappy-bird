@@ -32,9 +32,23 @@ Bird* Bird_create(int x, int y){
     Bird* bird = malloc(sizeof(Bird));
     bird->pos_x = x;
     bird->pos_y = y;
+    bird->vel_y = 0;
     return bird;
 }
 
 void Bird_free(Bird* bird){
     free(bird);
+}
+
+Rectangle Bird_get_rect(Bird *bird) {
+
+    float hitbox_w = BIRD_RADIUS * 0.9f;
+    float hitbox_h = BIRD_RADIUS * 0.6f;
+
+    return (Rectangle){
+        bird->pos_x - hitbox_w / 2,
+        bird->pos_y - hitbox_h / 2,
+        hitbox_w,
+        hitbox_h
+    };
 }

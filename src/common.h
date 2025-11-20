@@ -7,13 +7,16 @@ typedef enum {
     GAME
 } SCREEN;
 
+//gravidade
 extern const float GRAVITY;
 
+//bird
 extern const float BIRD_RADIUS;
 extern const float BIRD_X;
 extern float BIRD_START_Y;
 extern const float BIRD_JUMP_FORCE;
 
+//pipe
 extern const float PIPE_WIDTH;
 extern float PIPE_VELOCITY;
 extern float PIPE_HOLE_HEIGHT;

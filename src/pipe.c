@@ -27,3 +27,21 @@ Pipe* Pipe_create(float x, float hole_start_y, float hole_size){
 void Pipe_free(Pipe* pipe){
     free(pipe);
 }
+void Pipe_get_rects(Pipe *pipe, Rectangle *top, Rectangle *bottom) {
+    // Retângulo do pipe de cima
+    *top = (Rectangle){
+        pipe->x,
+        0,
+        PIPE_WIDTH,
+        pipe->hole_start_y
+    };
+
+    // Retângulo do pipe de baixo
+    float y = pipe->hole_start_y + pipe->hole_size;
+    *bottom = (Rectangle){
+        pipe->x,
+        y,
+        PIPE_WIDTH,
+        HEIGHT - y
+    };
+}

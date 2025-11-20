@@ -10,7 +10,6 @@ typedef struct { //struct p definir as caracteristicas do passaro
     float pos_y;
 
     float vel_y;
-    int lifes;
 } Bird;
 
 void Bird_jump(Bird* bird);
@@ -20,5 +19,7 @@ void Bird_draw(Bird* bird, Texture2D bird_texture);
 
 Bird* Bird_create(int x, int y);
 void Bird_free(Bird* bird);
+Rectangle Bird_get_rect(Bird *bird);
+
 
 #endif
