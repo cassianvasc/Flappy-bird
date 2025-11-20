@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "common.h"
 #include "game.h"
+#include "menu.h"
 
 const float GRAVITY = 0.15f;
 const float BIRD_RADIUS = 100.0f;
@@ -17,7 +18,7 @@ float TIME_CRATION_PIPE = 4.0f;
 float WIDTH = 800;
 float HEIGHT = 600;
 
-SCREEN screen = GAME;
+SCREEN screen = MENU;
 
 int main(void) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "Flappy Bird"); //funçao da raylib para iniciar e ajustar a tela ao monitor
@@ -28,27 +29,28 @@ int main(void) {
 
     BIRD_START_Y = HEIGHT / 2;
 
-    Game_load();
-    // Menu_load();
+    menu_load();
 
     while (!WindowShouldClose()) { //tudo que aparece na tela é escrito dentro dessa funçao da raylib
         if (screen == GAME){
             Game_update();
         } else if (screen == MENU) {
-            //Menu_update();
+            menu_update();
         }
 
         BeginDrawing();
+        ClearBackground(RAYWHITE);
+
         if (screen == GAME){
             Game_draw();
         } else if (screen == MENU) {
-            //Menu_draw();
+            menu_draw();
         }
         EndDrawing();
     }
 
-    Game_unload();
-    // Menu_unload();
+    if (screen == GAME) Game_unload(); else menu_unload();
+
     CloseWindow();
     return 0;
 }

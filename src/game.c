@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "menu.h"
 
 bool game_over = false;
 
@@ -53,7 +54,8 @@ void Game_update(){
     if (game_over) {
         if (IsKeyPressed(KEY_SPACE)) {
             Game_unload();
-            Game_load();
+            screen = MENU;
+            menu_load();
         }
         return;
     }
