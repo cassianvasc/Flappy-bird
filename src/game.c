@@ -21,6 +21,8 @@ Node* pipe_tail;
 
 int passed;
 
+float pipe_time;
+
 Pipe* generate_random_pipe(){
     int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT);
     return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT);
@@ -28,6 +30,8 @@ Pipe* generate_random_pipe(){
 
 void Game_load(){
     game_over = false;
+
+    pipe_time = 0;
 
     bird = Bird_create(BIRD_X, BIRD_START_Y);
     bird_texture = LoadTexture("assets/sprites/bird.png");
