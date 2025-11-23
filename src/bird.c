@@ -11,22 +11,20 @@ void Bird_update(Bird* bird){
 }
 
 void Bird_draw(Bird* bird, Texture2D bird_texture){
-    int x = bird->pos_x - BIRD_RADIUS / 2;
-    int y = bird->pos_y - BIRD_RADIUS / 2;
-
-    float rotation = bird->vel_y < 0 ? -30 : 0;
+    float scale = BIRD_RADIUS / (float)bird_texture.width;
+    float w = BIRD_RADIUS;
+    float h = bird_texture.height * scale;
 
     DrawTexturePro(
-        bird_texture, 
+        bird_texture,
         (Rectangle){0, 0, bird_texture.width, bird_texture.height},
-        (Rectangle){x, y, BIRD_RADIUS, BIRD_RADIUS},
-        (Vector2){BIRD_RADIUS / 2, BIRD_RADIUS / 2},
-        rotation,
+        (Rectangle){bird->pos_x, bird->pos_y, w, h},
+        (Vector2){w/2, h/2},
+        bird->vel_y < 0 ? -30 : 0,
         WHITE
     );
-
-    //DrawCircle(bird->pos_x, bird->pos_y, BIRD_RADIUS, YELLOW);
 }
+
 
 Bird* Bird_create(int x, int y){
     Bird* bird = malloc(sizeof(Bird));
@@ -42,8 +40,9 @@ void Bird_free(Bird* bird){
 
 Rectangle Bird_get_rect(Bird *bird) {
 
-    float hitbox_w = BIRD_RADIUS * 0.3f;
-    float hitbox_h = BIRD_RADIUS * 0.6f;
+    float hitbox_w = BIRD_RADIUS * 0.9f;
+    float hitbox_h = BIRD_RADIUS * 0.85f;
+
 
     return (Rectangle){
         bird->pos_x - hitbox_w / 2,
