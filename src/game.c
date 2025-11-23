@@ -1,35 +1,38 @@
+//-------------------------------------------------------------------
 #include "game.h"
 #include "bird.h"
 #include "pipe.h"
 #include "linked_list.h"
-#include "raylib.h"
+#include "raylib.h"           // bibliotecas e demais arquivos
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include "menu.h"
+//--------------------------------------------------------------------
+//                          variaveis globais
+bool game_over = false;//flag de game over
 
-bool game_over = false;
-
-float TIME_CREATION_CURRENT;
+float TIME_CREATION_CURRENT;//tempo atual de criaçao de canos
 
 Bird* bird;
 
-Texture2D bird_texture;
-Texture2D background;
+Texture2D bird_texture; //textura do passaro
+Texture2D background; // textura do cenario
 
 // Lista encadeada de tubos
 Node* pipe_head;
 Node* pipe_tail;
 
-int passed;
+int passed; // contator de canos ultrapassados
 
-float pipe_time;
-
+float pipe_time; // tempo de criação de novos canos
+//----------------------------------------------------------------------------
+//funçao para gerar canos com buracos aleatorios
 Pipe* generate_random_pipe(){
-    int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT);
-    return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT);
+    int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT); //cria a posiçao do buraco no cano, a funçao rand() gera um inteiro aleatorio. % faz com que  o resultado fique entre 0 e o numero calculado 
+    return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT); // retorna a criaçao de um novo cano, que sera gerado sempre no canto direito da tela e com o buraco aleatorio calculado anteriormente
 }
-
+//----------------------------------------------------------------------------
 void Game_load(){
     game_over = false;
 
@@ -46,7 +49,7 @@ void Game_load(){
 
     passed = 0;
 }
-
+//----------------------------------------------------------------------------
 void Game_unload(){
     Bird_free(bird);
     UnloadTexture(bird_texture);
@@ -55,9 +58,9 @@ void Game_unload(){
         remove_first(&pipe_head, &pipe_tail);
     }
 }
-
+//----------------------------------------------------------------------------
 float pipe_time = 0.0f;
-
+//----------------------------------------------------------------------------
 void Game_update(){
     if (game_over) {
         if (IsKeyPressed(KEY_ENTER)) {
