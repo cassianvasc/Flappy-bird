@@ -10,6 +10,8 @@
 
 bool game_over = false;
 
+float TIME_CREATION_CURRENT;
+
 Bird* bird;
 
 Texture2D bird_texture;
@@ -30,6 +32,8 @@ Pipe* generate_random_pipe(){
 
 void Game_load(){
     game_over = false;
+
+    TIME_CREATION_CURRENT = TIME_CRATION_PIPE;
 
     pipe_time = 0;
 
@@ -64,13 +68,17 @@ void Game_update(){
         return;
     }
     pipe_time += GetFrameTime();
+    
+    TIME_CREATION_CURRENT -= GetFrameTime() * 0.05f;
+    if (TIME_CREATION_CURRENT < 0.7f)
+        TIME_CREATION_CURRENT = 0.7f;
 
     if (IsKeyPressed(KEY_SPACE)){
         Bird_jump(bird);
     }
     Bird_update(bird);
 
-    if (pipe_time > TIME_CRATION_PIPE){
+    if (pipe_time > TIME_CREATION_CURRENT){
         pipe_time = 0;
         Pipe* pipe = generate_random_pipe();
         add_end(&pipe_head, &pipe_tail, pipe);
