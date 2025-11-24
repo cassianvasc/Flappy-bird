@@ -2,19 +2,6 @@
 
 Clone do Flappy Bird desenvolvido em C com Raylib para a disciplina de Programação Imperativa e Funcional.
 
-## 🚀 Como Executar
-
-### Instalação das dependências (Arch Linux)
-```bash
-sudo pacman -S raylib make gcc
-```
-
-### Compilar e rodar
-```bash
-make
-./flappy_bird
-```
-
 ## 🎮 Controles
 
 - **Espaço**: Voar
