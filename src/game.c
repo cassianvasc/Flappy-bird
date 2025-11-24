@@ -25,6 +25,8 @@ Node* pipe_tail;
 
 int passed; // contator de canos ultrapassados
 
+bool saved_score = false;
+
 float pipe_time; // tempo de criação de novos canos
 //----------------------------------------------------------------------------
 //funçao para gerar canos com buracos aleatorios
@@ -63,6 +65,13 @@ float pipe_time = 0.0f;
 //----------------------------------------------------------------------------
 void Game_update(){
     if (game_over) {
+        if(!saved_score){
+            FILE*file = fopen("score_pontos.txt", "w");
+            fprintf(file, "%d\n", passed);
+            fclose(file);
+            saved_score = true;
+        }
+
         if (IsKeyPressed(KEY_ENTER)) {
             Game_unload();
             screen = MENU;
