@@ -29,8 +29,8 @@ float pipe_time; // tempo de criação de novos canos
 //----------------------------------------------------------------------------
 //funçao para gerar canos com buracos aleatorios
 Pipe* generate_random_pipe(){
-    int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT); //cria a posiçao do buraco no cano, a funçao rand() gera um inteiro aleatorio. % faz com que  o resultado fique entre 0 e o numero calculado 
-    return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT); // retorna a criaçao de um novo cano, que sera gerado sempre no canto direito da tela e com o buraco aleatorio calculado anteriormente
+    int y = rand() % (int)(HEIGHT - PIPE_HOLE_HEIGHT); //cria a posiçao do buraco no cano, a funçao rand() gera um inteiro aleatorio. % faz com que  o resultado fique entre 0 e o numero calculado por
+    return Pipe_create(WIDTH, y, PIPE_HOLE_HEIGHT);
 }
 //----------------------------------------------------------------------------
 void Game_load(){
