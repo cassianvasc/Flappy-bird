@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 # Flappy bird
 Trabalho da cadeira de Programação Imperativa e Funcional do 2 período do curso de Ciências da computação da Cesar School
+
 =======
 # 🐦 Flappy Bird Clone
 
@@ -10,6 +10,27 @@ Clone do Flappy Bird desenvolvido em C com Raylib para a disciplina de Programa�
 
 - **Espaço**: Voar
 - **Enter**: Iniciar e voltar ao menu
+
+## 🔧 Instalação e Compilação
+Execute os seguintes comandos em sequência:
+# 1. Atualizar o sistema
+sudo apt update
+
+# 2. Instalar ferramentas básicas de compilação
+sudo apt install -y build-essential git cmake pkg-config make
+
+# 3. Instalar dependências da Raylib
+sudo apt install -y libgl1-mesa-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libxxf86vm-dev libasound2-dev
+
+# 4. Baixar e compilar a Raylib
+git clone https://github.com/raysan5/raylib.git
+cd raylib/src
+make PLATFORM=PLATFORM_DESKTOP
+sudo make install
+cd ../..
+
+# 5. Compilar e executar o jogo
+make clean && make run
 
 ## 🛠️ Estrutura do Projeto
 
