@@ -11,8 +11,29 @@ Clone do Flappy Bird desenvolvido em C com Raylib para a disciplina de Programa�
 - **Espaço**: Voar
 - **Enter**: Iniciar e voltar ao menu
 
+## 🛠️ Estrutura do Projeto
+
+O código está organizado da seguinte forma:
+
+- `main.c` - Loop principal do jogo
+- `bird.c/h` - Lógica do pássaro
+- `pipe.c/h` - Lógica dos canos (obstáculos)
+- `game.c/h` - Jogo propriamente dito
+- `common.h/h` - Variáveis globais do codigo
+- `menu.c/h` - Tela de menu inicial
+- `Linked_list.c/h` - Lista encadeada de canos
+
+## 📚 Conceitos Aplicados
+
+- Structs para organização de dados
+- Listas encadeadas para gerenciar os obstáculos
+- Funções em C e funções da Raylib
+- Ponteiros e alocação dinâmica
+- Raylib para gráficos, colisões e dinâmica de jogo
+
 # 🔧 Instalação e Compilação
 Execute os seguintes comandos em sequência:
+
 ## 1. Atualizar o sistema
 sudo apt update
 
@@ -32,26 +53,7 @@ cd ../..
 ## 5. Compilar e executar o jogo
 make clean && make run
 
-# 🛠️ Estrutura do Projeto
-
-O código está organizado da seguinte forma:
-
-- `main.c` - Loop principal do jogo
-- `bird.c/h` - Lógica do pássaro
-- `pipe.c/h` - Lógica dos canos (obstáculos)
-- `game.c/h` - Jogo propriamente dito
-- `common.h/h` - Variáveis globais do codigo
-- `menu.c/h` - Tela de menu inicial
-- `Linked_list.c/h` - Lista encadeada de canos
-
-# 📚 Conceitos Aplicados
-
-- Structs para organização de dados
-- Listas encadeadas para gerenciar os obstáculos
-- Funções em C e funções da Raylib
-- Ponteiros e alocação dinâmica
-- Raylib para gráficos, colisões e dinâmica de jogo
-
 ---
 
 Desenvolvido por [Cassian Vasconcelos Ferrari] - [2025.2]
+
